@@ -2,7 +2,9 @@ import discord
 import asyncio
 from discord.ext import commands
 import datetime
+import config
 
+token = config.token
 # def dday():
 #   today = datetime.date.today() #현재날짜
 #   targetday = datetime.date(2021,6,26) #d-day셀 날짜
@@ -83,4 +85,4 @@ async def help(ctx):
     #     else:
     #         await message.channel.send(message.channel, msg.content)
 
-app.run('ODI3ODkyMjAyODg0OTU2MjIy.YGhosg.mcAjI4oE-TcjMSut-8WoKXS9LB8')
+app.run(token)
