@@ -1,16 +1,12 @@
+# -*- coding:utf-8 -*-
+
 import discord
 import asyncio
 from discord.ext import commands
 import datetime
-import config
+from config import config
 
-token = config.token
-# def dday():
-#   today = datetime.date.today() #현재날짜
-#   targetday = datetime.date(2021,6,26) #d-day셀 날짜
-#   values = targetday - today
-#   values.strftime('%d')
-#   return values
+token = config.token 
 
 def dday():
   startdday1 = datetime.date.today()
@@ -19,70 +15,66 @@ def dday():
   startmm=int(startdday.split('-')[1])
   startdd=int(startdday.split('-')[2])
   sd = datetime.date(startyy, startmm, startdd) #시작기준일 설정
-  enddday = ("2021-06-28")
+  enddday = ("2021-06-19")
   endyy = int(enddday.split('-')[0])
   endmm = int(enddday.split('-')[1])
   enddd = int(enddday.split('-')[2])
   ed = datetime.date(endyy, endmm, enddd) #끝 기준일 설정
   result=(sd - ed).days #차를 구하고 일수로 바꿈
-
   return result
 
-    
+#client = discord.Client()
+client = commands.Bot(command_prefix='>',status=discord.Status.online, activity=discord.Game("반갑다옹 :D"))
 
-app = commands.Bot(command_prefix='!')
-
-@app.event
+@client.event
 async def on_ready():
-    print('Logged in as')
-    print(app.user.name)
-    print(app.user.id)
-    print('------')
-    await app.change_presence(status=discord.Status.online, activity=None)
+  print('Logged in as')
+  print(client.user.name)
+  print(client.user.id)
+  print('------')
+  await client.change_presence()
 
+@client.event
+async def on_message(message):
+  message_content = message.content
+  bad = message_content.find("씨발" or "cex")
+  if bad>=0:
+    await message.channel.send("언어폭력 멈춰라옹!!!")
+    await message.delete()
+  await client.process_commands(message)
+  
+  if message.author.bot:
+    return None
+  
+  if message.content.startswith("!안녕" or "hello"):
+    await message.channel.send("반갑다옹")
 
-@app.command()
-async def 안녕(ctx):
-    await ctx.send('떼-껄룩')
-
-@app.command()
-async def cats(ctx):
-    await ctx.send('애옹')
-
-@app.command()
-async def 종강(ctx):
+  if message.content.startswith("!cat"):
+    await message.channel.send("애옹")
+  
+  if message.content.startswith("!종강"):
     thisday=dday()
     if thisday > 0:
       text = "종강까지 디데이 결과 " + str(thisday) + "일 지났다옹"
-      await  ctx.send(text)
+      await message.channel.send(text)
     if thisday == 0:
       text = "종강까지 디데이 결과 D-DAY 다옹 "
-      await ctx.send(text)
+      await message.channel.send(text)
     else:
       text = "종강까지 디데이 결과 D" + str(thisday) + "일 남았다옹"
-      await ctx.send(text)
+      await message.channel.send(text)
+    
+  if message.content.startswith("!sex"):
+    await message.author.send("닥쳐라옹 하찮은 닝겐")
+  
+  if message.content.startswith("!도움" or "help"):
+    embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
+    embed.add_field(name="!도움",value="설명서가 나온다옹",inline=False)
+    embed.add_field(name="!안녕",value="인사 해준다옹",inline=False)
+    embed.add_field(name="!cat",value="애옹",inline=False)
+    embed.add_field(name="!종강",value="용붕쿤 종강날짜다옹",inline=False)
+    embed.add_field(name="!sex",value="궁금하면 해보라옹",inline=False)
+    await message.channel.send("반갑다옹 설명서좀 읽으라옹", embed=embed)
+    
 
-@app.command()
-async def sex(ctx):
-  await ctx.send('헨타이 닥치라옹')
-
-@app.command()
-async def help(ctx):
-  embed = discord.Embed(title="메인 제목", description="설명", color=0x62c1cc) # Embed의 기본 틀(색상, 메인 제목, 설명)을 잡아줍니다 embed.set_footer(text="하단 설명") # 하단에 들어가는 조그마한 설명을 잡아줍니다
-  await message.channel.send(embed=embed) # embed를 포함 한 채로 메시지를 전송합니다. 
-  await message.channel.send("설명서좀 읽으라옹", embed=embed) # embed와 메시지를 함께 보내고 싶으시면 이렇게 사용하시면 됩니다.
-
-    # if message.content.startswith('!test'):
-    #     await message.channel.send(message.channel, 'test!!!!')
-
-    # elif message.content.startswith('!say'):
-    #     await message.channel.send(message.channel, 'leave message')
-    #     msg = await app.wait_for_message(timeout=15.0, author=message.author)
-
-    #     if msg is None:
-    #         await message.channel.send(message.channel, '15초내로 입력해주세요. 다시시도: !say')
-    #         return
-    #     else:
-    #         await message.channel.send(message.channel, msg.content)
-
-app.run(token)
+client.run(token)
