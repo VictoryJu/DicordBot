@@ -110,7 +110,7 @@ async def on_message(message):
     data1 = soup.find('div', {'class':'weather_box'})
     pprint(soup)
     find_address = data1.find('span', {'class':'btn_select'}).text
-    Area = '현재 위치는 '+find_address+
+    Area = '현재 위치는 '+find_address
     find_currenttemp = data1.find('span',{'class': 'todaytemp'}).text
     Temp = '현재 온도는 '+find_currenttemp+'도다옹'
     data2 = data1.findAll('dd')
