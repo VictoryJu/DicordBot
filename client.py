@@ -10,10 +10,6 @@ from bs4 import BeautifulSoup
 from pprint import pprint
 import requests
 
-
-
-
-
 #token = config.token 
 badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕","좆냥이쉑"]
 
@@ -103,7 +99,7 @@ async def on_message(message):
     page = urlopen(req)
     html = page.read()
     soup = bs4.BeautifulSoup(html,'html5lib')
-    text = location + '날씨는' + soup.find('p', class='info_temperature').find('span',class='todaytemp').text + '도 다옹')
+    text = location + '날씨는' + soup.find('p', class='info_temperature').find('span',class='todaytemp').text + '도 다옹'
     await message_channel.send(text)
     # if mask<=30:
     #   await message.channel.send(text)
