@@ -25,6 +25,11 @@ def dday():
   result=(sd - ed).days #차를 구하고 일수로 바꿈
   return result
 
+def today():
+  startdday1 = datetime.date.today()
+  startdday = startdday1.strftime('%m-%d')
+  return startdday
+
 #client = discord.Client()
 client = commands.Bot(command_prefix='>',status=discord.Status.online, activity=discord.Game("반갑다옹 :D"))
 
@@ -68,6 +73,10 @@ async def on_message(message):
     
   if message.content.startswith("!sex"):
     await message.author.send("닥쳐라옹 하찮은 닝겐")
+  
+  if message.content.startswith("!날짜"):
+    text = "오늘 날짜는" + str(today()) +"이다옹"
+    await message.author.send()
   
   if message.content.startswith("!도움" or "help"):
     embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
