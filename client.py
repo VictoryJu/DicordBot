@@ -8,6 +8,14 @@ import datetime
 import os
 
 #token = config.token 
+badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕"]
+
+def checkBad(badword):
+  for i in badWord:
+    if badword == i:
+      return True
+    else:
+      return False
 
 
 def dday():
@@ -27,7 +35,7 @@ def dday():
 
 def today():
   startdday1 = datetime.date.today()
-  startdday = startdday1.strftime('%m-%d')
+  startdday = startdday1.strftime('%m월%d일')
   return startdday
 
 #client = discord.Client()
@@ -44,8 +52,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
   message_content = message.content
-  bad = message_content.find("씨발" or "cex")
-  if bad>=0:
+  # bad = message_content.find("씨발")
+  # if bad >= 0:
+  if checkBad(message_content) == True:
     await message.channel.send("언어폭력 멈춰라옹!!!")
     await message.delete()
   await client.process_commands(message)
@@ -76,7 +85,7 @@ async def on_message(message):
   
   if message.content.startswith("!날짜"):
     text = "오늘 날짜는" + str(today()) +"이다옹"
-    await message.author.send(text)
+    await message.channel.send(text)
   
   if message.content.startswith("!도움" or "help"):
     embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
