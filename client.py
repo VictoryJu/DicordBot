@@ -99,14 +99,8 @@ async def on_message(message):
     page = urlopen(req)
     html = page.read()
     soup = bs4.BeautifulSoup(html,'html5lib')
-    text = location + '날씨는' + soup.find('p', class='info_temperature').find('span',class='todaytemp').text + '도 다옹'
+    text = (location + '날씨는' + soup.find('p', class_='info_temperature').find('span',class_='todaytemp').text + '도 다옹')
     await message_channel.send(text)
-    # if mask<=30:
-    #   await message.channel.send(text)
-    #   await message.channel.send("미세먼지 없이 쾌적하다옹")
-    # else:
-    #   await message.channel.send(text)
-    #   await message.channel.send("마스크 꼭 껴라옹")
   
   if message.content.startswith("!도움" or "help"):
     embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
