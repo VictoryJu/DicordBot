@@ -4,9 +4,10 @@ import discord
 import asyncio
 from discord.ext import commands
 import datetime
-from config import config
+#from config import config
+import os
 
-token = config.token 
+#token = config.token 
 
 
 def dday():
@@ -78,4 +79,4 @@ async def on_message(message):
     await message.channel.send("반갑다옹 설명서좀 읽으라옹", embed=embed)
     
 
-client.run(token)
+client.run(os.environ['token'])
