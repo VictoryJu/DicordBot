@@ -14,8 +14,6 @@ def checkBad(badword):
   for i in badWord:
     if badword == i:
       return True
-    else:
-      return False
 
 
 def dday():
