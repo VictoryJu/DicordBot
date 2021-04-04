@@ -76,14 +76,15 @@ async def on_message(message):
   
   if message.content.startswith("!날짜"):
     text = "오늘 날짜는" + str(today()) +"이다옹"
-    await message.author.send()
+    await message.author.send(text)
   
   if message.content.startswith("!도움" or "help"):
     embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
     embed.add_field(name="!도움",value="설명서가 나온다옹",inline=False)
     embed.add_field(name="!안녕",value="인사 해준다옹",inline=False)
     embed.add_field(name="!cat",value="애옹",inline=False)
-    embed.add_field(name="!종강",value="용붕쿤 종강날짜다옹",inline=False)
+    embed.add_field(name="!종강",value="용붕쿤 종강날짜다옹",inline=True)
+    embed.add_field(name="!날짜",value="오늘 날짜도 알려준다옹",inline=False)
     embed.add_field(name="!sex",value="궁금하면 해보라옹",inline=False)
     await message.channel.send("반갑다옹 설명서좀 읽으라옹", embed=embed)
     
