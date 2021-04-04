@@ -16,7 +16,7 @@ def weather():
   find_dust = data2[0].find('span', {'class':'num'}).text
   mask = find_dust[0:2]
 
-print(weather.mask)
+
 
 # if int(mask) <= 30:
 #     print("현재 미세먼지 적정")
