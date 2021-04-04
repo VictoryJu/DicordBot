@@ -2,3 +2,7 @@
 discord.py
 asyncio
 datetime
+beautifulSoup
+bs4
+pprint
+requests
