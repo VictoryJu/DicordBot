@@ -93,7 +93,7 @@ async def on_message(message):
   
   if message.content.startswith("!날씨"):
     location = '서울'
-    enc_location = urlib.parse.quote(location + '+날씨')
+    enc_location = urllib.parse.quote(location + '+날씨')
     url = 'https://search.naver.com/search.naver?ie=utf&query='+enc_location
     req = Request(url)
     page = urlopen(req)
