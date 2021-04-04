@@ -8,6 +8,7 @@ from config import config
 
 token = config.token 
 
+
 def dday():
   startdday1 = datetime.date.today()
   startdday = startdday1.strftime('%Y-%m-%d')
