@@ -7,8 +7,9 @@ import datetime
 import os
 import bs4
 from bs4 import BeautifulSoup
-from pprint import pprint
 import requests
+from urllib.request import urlopen, Request
+import urllib
 
 #token = config.token 
 badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕","좆냥이쉑"]

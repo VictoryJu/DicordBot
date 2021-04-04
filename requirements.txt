@@ -3,5 +3,8 @@ discord.py
 asyncio
 datetime
 beautifulsoup4
+urllib
+urlopen
+Request
 bs4
 requests
