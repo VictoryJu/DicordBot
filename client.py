@@ -9,20 +9,10 @@ import bs4
 from bs4 import BeautifulSoup
 from pprint import pprint
 import requests
-def weather():
-  html = requests.get('https://search.naver.com/search.naver?query=날씨')
-  soup = BeautifulSoup(html.text, 'html.parser')
-  data1 = soup.find('div', {'class':'weather_box'})
-  pprint(soup)
-  # find_address = data1.find('span', {'class':'btn_select'}).text
-  # Area = '현재 위치는 '+find_address
-  find_currenttemp = data1.find('span',{'class': 'todaytemp'}).text
-  Temp = '현재 온도는 '+find_currenttemp+'도다옹'
-  # data2 = data1.findAll('dd') 
-  # find_dust = data2[0].find('span', {'class':'num'}).text
-  # mask = find_dust[0:2]
-  # text = Area + '이고' + Temp
-  return Temp
+
+
+
+
 
 #token = config.token 
 badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕","좆냥이쉑"]
@@ -83,6 +73,9 @@ async def on_message(message):
   if message.content.startswith("!cat"):
     await message.channel.send("애옹")
   
+  if message.content.startswith("!박승균"):
+    await message.channel.send("야근중이다옹")
+  
   if message.content.startswith("!종강"):
     thisday=dday()
     if thisday > 0:
@@ -103,7 +96,14 @@ async def on_message(message):
     await message.channel.send(text)
   
   if message.content.startswith("!날씨"):
-    text = weather()
+    location = '서울'
+    enc_location = urlib.parse.quote(location + '+날씨')
+    url = 'https://search.naver.com/search.naver?ie=utf&query='+enc_location
+    req = Request(url)
+    page = urlopen(req)
+    html = page.read()
+    soup = bs4.BeautifulSoup(html,'html5lib')
+    text = location + '날씨는' + soup.find('p', class='info_temperature').find('span',class='todaytemp').text + '도 다옹')
     await message_channel.send(text)
     # if mask<=30:
     #   await message.channel.send(text)
@@ -118,7 +118,9 @@ async def on_message(message):
     embed.add_field(name="!안녕",value="인사 해준다옹",inline=False)
     embed.add_field(name="!cat",value="애옹",inline=False)
     embed.add_field(name="!종강",value="용붕쿤 종강날짜다옹",inline=True)
-    embed.add_field(name="!날짜",value="오늘 날짜도 알려준다옹",inline=False)
+    embed.add_field(name="!날짜",value="오늘 날짜도 알려준다옹",inline=True)
+    embed.add_field(name="!날씨",value="오늘 날씨를 알려준다옹",inline=False)
+    embed.add_field(name="!박승균",value="엠좆게이야옹",inline=False)
     embed.add_field(name="!sex",value="궁금하면 해보라옹",inline=False)
     await message.channel.send("반갑다옹 설명서좀 읽으라옹", embed=embed)
     
