@@ -12,7 +12,7 @@ badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","�
 
 def checkBad(badword):
   for i in badWord:
-    if badword == i:
+    if badword.startswith == i:
       return True
 
 
