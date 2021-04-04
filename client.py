@@ -101,7 +101,8 @@ async def on_message(message):
     page = urlopen(req)
     html = page.read()
     soup = bs4.BeautifulSoup(html,'html5lib')
-    text = (location + '날씨는' + soup.find('p', class_='info_temperature').find('span',class_='todaytemp').text + '도 다옹')
+    text = ('현재 ' location + '날씨는 ' + soup.find('p', class_='info_temperature').find('span',class_='todaytemp').text + '도 다옹')
+
     await message.channel.send(text)
   
   if message.content.startswith("!도움" or "help"):
