@@ -4,5 +4,4 @@ asyncio
 datetime
 beautifulsoup4
 bs4
-pprint
 requests
