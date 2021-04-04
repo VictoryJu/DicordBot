@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 import requests
 from urllib.request import urlopen, Request
 import urllib
+import html5lib
 
 #token = config.token 
 badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕","좆냥이쉑"]
@@ -101,7 +102,7 @@ async def on_message(message):
     html = page.read()
     soup = bs4.BeautifulSoup(html,'html5lib')
     text = (location + '날씨는' + soup.find('p', class_='info_temperature').find('span',class_='todaytemp').text + '도 다옹')
-    await message_channel.send(text)
+    await message.channel.send(text)
   
   if message.content.startswith("!도움" or "help"):
     embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
