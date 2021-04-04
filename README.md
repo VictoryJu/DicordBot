@@ -2,7 +2,7 @@
 
 
 ![title](https://raw.githubusercontent.com/VictoryJu/DiscordBot/master/img/떼껄룩.jpg)  
-## ***떼-껄룩이다옹*** 
+<h2><span style="color:#ff8916"><strong>떼-껄룩이다옹</strong></span></h2>
 
 ------------------
 
@@ -18,7 +18,7 @@
 
     > !종강:  
     용붕쿤 종강날짜다옹  
-    
+
     > !날짜:  
     오늘 날짜도 알려준다옹  
 
