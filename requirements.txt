@@ -4,6 +4,5 @@ asyncio
 datetime
 beautifulsoup4
 urlopen
-Request
 bs4
 requests
