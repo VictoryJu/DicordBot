@@ -104,6 +104,17 @@ async def on_message(message):
     text = ('현재 ' + location + '날씨는 ' + soup.find('p', class_='info_temperature').find('span',class_='todaytemp').text + '도 다옹')
     await message.channel.send(text)
   
+  if message.content.startswith("!경기 날씨"):
+    location = '경기도'
+    enc_location = urllib.parse.quote(location + '+날씨')
+    url = 'https://search.naver.com/search.naver?ie=utf&query='+enc_location
+    req = Request(url)
+    page = urlopen(req)
+    html = page.read()
+    soup = bs4.BeautifulSoup(html,'html5lib')
+    text = ('현재 ' + location + '날씨는 ' + soup.find('p', class_='info_temperature').find('span',class_='todaytemp').text + '도 다옹')
+    await message.channel.send(text)
+  
   if message.content.startswith("!도움" or "help"):
     embed = discord.Embed(title="떼껄룩 사용법", description="명령어는 아래서 봐라옹 추가기능 필요하면 말해라옹", color=0x62c1cc)
     embed.add_field(name="!도움",value="설명서가 나온다옹",inline=False)
@@ -111,7 +122,8 @@ async def on_message(message):
     embed.add_field(name="!cat",value="애옹",inline=False)
     embed.add_field(name="!종강",value="용붕쿤 종강날짜다옹",inline=True)
     embed.add_field(name="!날짜",value="오늘 날짜도 알려준다옹",inline=True)
-    embed.add_field(name="!날씨",value="오늘 날씨를 알려준다옹",inline=False)
+    embed.add_field(name="!날씨",value="오늘 서울 날씨를 알려준다옹",inline=False)
+    embed.add_field(name="!경기 날씨",value="오늘 경기도 날씨를 알려준다옹",inline=False)
     embed.add_field(name="!박승균",value="엠좆게이야옹",inline=False)
     embed.add_field(name="!sex",value="궁금하면 해보라옹",inline=False)
     await message.channel.send("반갑다옹 설명서좀 읽으라옹", embed=embed)
