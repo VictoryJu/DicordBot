@@ -2,7 +2,7 @@
 
 
 ![title](https://raw.githubusercontent.com/VictoryJu/DiscordBot/master/img/떼껄룩.jpg)  
-<font color='#ffd33d'>떼-껄룩이다옹</font>
+## ***떼-껄룩이다옹***
 
 ------------------
 
