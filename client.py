@@ -8,11 +8,11 @@ import datetime
 import os
 
 #token = config.token 
-badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕"]
+badWord = ["씨발","좆냥이","쒸벌련","cex","ㅅㅂ","ㅆㅂ","씨벌","시발","시벌","좆냥","나비탕","좆냥이쉑"]
 
 def checkBad(badword):
   for i in badWord:
-    if badword.startswith == i:
+    if badword == i:
       return True
 
 
