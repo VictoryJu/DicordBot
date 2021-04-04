@@ -95,14 +95,15 @@ async def on_message(message):
     soup = BeautifulSoup(html.text, 'html.parser')
     data1 = soup.find('div', {'class':'weather_box'})
     pprint(soup)
-    find_address = data1.find('span', {'class':'btn_select'}).text
-    Area = '현재 위치는 '+find_address
+    # find_address = data1.find('span', {'class':'btn_select'}).text
+    # Area = '현재 위치는 '+find_address
     find_currenttemp = data1.find('span',{'class': 'todaytemp'}).text
     Temp = '현재 온도는 '+find_currenttemp+'도다옹'
     data2 = data1.findAll('dd')
     find_dust = data2[0].find('span', {'class':'num'}).text
     mask = find_dust[0:2]
-    text = Area + '이고' + Temp
+    #text = Area + '이고' + Temp
+    text = Temp
     if mask<=30:
       await message.channel.send(text)
       await message.channel.send("미세먼지 없이 쾌적하다옹")
