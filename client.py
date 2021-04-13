@@ -85,9 +85,6 @@ async def on_message(message):
     else:
       text = "종강까지 디데이 결과 D" + str(thisday) + "일 남았다옹"
       await message.channel.send(text)
-    
-  if message.content.startswith("!sex"):
-    await message.author.send("닥쳐라옹 하찮은 닝겐")
   
   if message.content.startswith("!날짜"):
     text = "오늘 날짜는" + str(today()) +"이다옹"
@@ -124,8 +121,6 @@ async def on_message(message):
     embed.add_field(name="!날짜",value="오늘 날짜도 알려준다옹",inline=True)
     embed.add_field(name="!날씨",value="오늘 서울 날씨를 알려준다옹",inline=False)
     embed.add_field(name="!경기 날씨",value="오늘 경기도 날씨를 알려준다옹",inline=False)
-    embed.add_field(name="!박승균",value="엠좆게이야옹",inline=False)
-    embed.add_field(name="!sex",value="궁금하면 해보라옹",inline=False)
     await message.channel.send("반갑다옹 설명서좀 읽으라옹", embed=embed)
     
 
