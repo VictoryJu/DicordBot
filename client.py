@@ -28,7 +28,7 @@ def dday():
   startmm=int(startdday.split('-')[1])
   startdd=int(startdday.split('-')[2])
   sd = datetime.date(startyy, startmm, startdd) #시작기준일 설정
-  enddday = ("2021-06-19")
+  enddday = ("2021-06-14")
   endyy = int(enddday.split('-')[0])
   endmm = int(enddday.split('-')[1])
   enddd = int(enddday.split('-')[2])
